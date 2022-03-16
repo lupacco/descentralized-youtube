@@ -41,7 +41,7 @@ contract('DVideo', ([deployer, author]) => {
       assert.equal(videoCount, 1)
       const event = result.logs[0].args
       assert.equal(event.id.toNumber(), videoCount.toNumber(), 'id is correct')
-      assert.equal(event.hash, hash, 'Hash is correct')
+      assert.equal(event.videoHash, hash, 'Hash is correct')
       assert.equal(event.title, 'Video title', 'title is correct')
       assert.equal(event.author, author, 'author is correct')
 
@@ -56,7 +56,7 @@ contract('DVideo', ([deployer, author]) => {
     it('lists videos', async () => {
       const video = await dvideo.videos(videoCount)
       assert.equal(video.id.toNumber(), videoCount.toNumber(), 'id is correct')
-      assert.equal(video.hash, hash, 'Hash is correct')
+      assert.equal(video.videoHash, hash, 'Hash is correct')
       assert.equal(video.title, 'Video title', 'title is correct')
       assert.equal(video.author, author, 'author is correct')
     })
