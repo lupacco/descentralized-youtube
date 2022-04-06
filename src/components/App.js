@@ -39,7 +39,7 @@ class App extends Component {
     //Get network ID
     const networkId = await web3.eth.net.getId()
     //Get network data
-    const networkData = DVideo.networks[networkId]
+    const networkData = DVideo.networks[networkId]//e se o network id for inválido?
     if (networkData) {
       const dvideo = new web3.eth.Contract(DVideo.abi, networkData.address)
       this.setState({ dvideo })
@@ -104,8 +104,7 @@ class App extends Component {
     //add to ipfs
     ipfs.add(this.state.buffer, (error, result) => {
       console.log('IPFS result', result)
-      if(error){
-        console.log("kakaka")
+      if (error) {
         console.log(error)
         return
       }
@@ -123,8 +122,8 @@ class App extends Component {
 
   //Change Video
   changeVideo = (hash, title) => {
-    this.setState({'currentHash': hash})
-    this.setState({'currentTitle': title})
+    this.setState({ 'currentHash': hash })
+    this.setState({ 'currentTitle': title })
   }
 
   constructor(props) {
@@ -155,7 +154,7 @@ class App extends Component {
             uploadVideo={this.uploadVideo}
             captureFile={this.captureFile}
             changeVideo={this.changeVideo}
-            currentHash={this.state.currentHash} //por alguma razao ele ta passando o objeto ao invés do hash
+            currentHash={this.state.currentHash}
             currentTitle={this.state.currentTitle}
           />
         }
